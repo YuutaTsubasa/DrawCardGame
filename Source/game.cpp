@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "game.h"
-#include "card.h"
+#include "card_collection.h"
 #include "font_writer.h"
 using namespace std;
 
@@ -26,6 +26,7 @@ YuutaGame::Game::Game(
 }
 
 YuutaGame::Game::~Game(){
+    FontWriter::destroyInstance();
     SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
 	IMG_Quit();
@@ -65,24 +66,12 @@ void YuutaGame::Game::run(){
     bool isQuit = false;
 
     vector<string> cardTexts = 
-        {"悠", "太", "翼", "寫", 
-        "程", "式", "語", "言",
-        "悠", "太", "翼", "寫", 
-        "程", "式", "語", "言"};
-
-    vector<Card> cards;
-    for (int i = 0 ; i < cardTexts.size(); ++i){
-        auto card = Card(cardTexts[i], 
-            {_screenWidth / 2 + (Card::DEFAULT_WIDTH + 10) * (i % 4 - 1.5f) - 0.5f * Card::DEFAULT_WIDTH,
-             _screenHeight / 2 + (Card::DEFAULT_HEIGHT + 10) * (i / 4 - 1.5f) - 0.5f * Card::DEFAULT_HEIGHT,
-             Card::DEFAULT_WIDTH, Card::DEFAULT_HEIGHT},
-             Card::DEFAULT_FRONT_COLOR,
-             Card::DEFAULT_BACK_COLOR,
-             Card::DEFAULT_FONT_ID,
-             Card::DEFAULT_FONT_SIZE,
-             Card::DEFAULT_FONT_COLOR);
-        cards.push_back(card);
-    }
+        {"悠", "太", "翼", "寫", "程", "式", "語", "言"};
+    
+    CardCollection cardCollection(
+        cardTexts, 
+        _screenWidth, 
+        _screenHeight);
 
 	while(!isQuit) {
 		SDL_Event event;
@@ -91,15 +80,13 @@ void YuutaGame::Game::run(){
 				isQuit = true;
 			}
 
-            for(auto &card : cards){
-                card.Update(&event);
-            }
-
-            clearRenderer(_renderer);
-            for(auto &card : cards){
-                card.Draw(_renderer);
-            }
-            SDL_RenderPresent(_renderer);
+            cardCollection.update(&event);
 		}
+
+        cardCollection.update(&event);
+
+        clearRenderer(_renderer);
+        cardCollection.draw(_renderer);
+        SDL_RenderPresent(_renderer);
 	}
 }

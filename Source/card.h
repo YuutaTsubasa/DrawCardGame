@@ -16,6 +16,7 @@ namespace YuutaGame{
             string _fontId;
             int _fontSize;
             SDL_Color _fontColor;
+            SDL_Texture* _fontImage;
 
             bool _isFront;
 
@@ -38,8 +39,11 @@ namespace YuutaGame{
                 SDL_Color fontColor);
             ~Card();
 
-            void Update(SDL_Event* event);
-            void Draw(SDL_Renderer* renderer);
+            bool isClick(SDL_Event* event);
+            void flip();
+            void draw(SDL_Renderer* renderer);
+            bool isFront();
+            string getText();
     };
 }
 #endif

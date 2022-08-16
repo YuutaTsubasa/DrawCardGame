@@ -26,27 +26,36 @@ YuutaGame::Card::Card(
     _fontId = fontId;
     _fontSize = fontSize;
     _fontColor = fontColor;
+    _fontImage = NULL;
     _isFront = false;
 }
 
 YuutaGame::Card::~Card(){
-
+    if (_fontImage != NULL){
+        SDL_DestroyTexture(_fontImage);
+    }
 }
 
-void YuutaGame::Card::Update(SDL_Event* event) {
-    if( event->type != SDL_MOUSEBUTTONUP )
-        return;
+bool YuutaGame::Card::isClick(SDL_Event* event) {
+    if( event == nullptr || event->type != SDL_MOUSEBUTTONUP )
+        return false;
 
     int x, y;
     SDL_GetMouseState( &x, &y );
 
     if (x >= _range.x && x <= _range.x + _range.w &&
         y >= _range.y && y <= _range.y + _range.h){
-        _isFront = !_isFront;
+        return true;
     }
+
+    return false;
 }
 
-void YuutaGame::Card::Draw(SDL_Renderer* renderer){
+void YuutaGame::Card::flip(){
+    _isFront = !_isFront;
+}
+
+void YuutaGame::Card::draw(SDL_Renderer* renderer){
     SDL_Color currentColor = _isFront ? _frontColor : _backColor;
     SDL_SetRenderDrawColor( 
         renderer, 
@@ -58,9 +67,19 @@ void YuutaGame::Card::Draw(SDL_Renderer* renderer){
     SDL_RenderFillRect( renderer, &_range );
 
     if (_isFront){
-        SDL_RenderCopy(renderer, 
-            FontWriter::getInstance(renderer)->write(
-                _fontId, _fontSize, _fontColor, _text
-            ), NULL, &_range);
+        if (_fontImage == NULL){
+            _fontImage = FontWriter::getInstance(renderer)->write(
+                _fontId, _fontSize, _fontColor, _text);
+        }
+
+        SDL_RenderCopy(renderer, _fontImage, NULL, &_range);
     }
+}
+
+bool YuutaGame::Card::isFront(){
+    return _isFront;
+}
+
+string YuutaGame::Card::getText(){
+    return _text;
 }

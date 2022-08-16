@@ -37,7 +37,7 @@ SDL_Texture* YuutaGame::FontWriter::write(string fontId, int size, SDL_Color col
             TTF_OpenFont(("../Resource/" + fontId + ".ttf").c_str(),  size);
 
     SDL_Surface* textSurface = TTF_RenderUTF8_Solid(_resourceMap[sizeFontId], text.c_str(), color);
-	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(_renderer, textSurface );
-	SDL_FreeSurface( textSurface );
+    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(_renderer, textSurface );    
+    SDL_FreeSurface( textSurface );
     return textTexture;
 }
