@@ -10,7 +10,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 make.exe: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Aug 16 22:05:17 2022
+# Make data base, printed on Tue Aug 23 23:24:43 2022
 
 # Variables
 
@@ -18,11 +18,11 @@ make.exe: *** No rule to make target `all'.  Stop.
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
- 
 # makefile
 MAKEFLAGS = Rrqp
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+ 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -38,7 +38,7 @@ SHELL := /bin/sh
 # environment
 WINDIR = C:\WINDOWS
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-tw","availableLanguages":{"*":"zh-tw"},"_languagePackId":"03519bb7194c1df1d1f37b998a097db3.zh-tw","_translationsConfigFile":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\03519bb7194c1df1d1f37b998a097db3.zh-tw\\tcf.json","_cacheRoot":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\03519bb7194c1df1d1f37b998a097db3.zh-tw","_resolvedLanguagePackCoreLocation":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\03519bb7194c1df1d1f37b998a097db3.zh-tw\\6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\03519bb7194c1df1d1f37b998a097db3.zh-tw\\corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-tw","availableLanguages":{"*":"zh-tw"},"_languagePackId":"254afc097fc5987ec225be4b7d46668a.zh-tw","_translationsConfigFile":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\254afc097fc5987ec225be4b7d46668a.zh-tw\\tcf.json","_cacheRoot":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\254afc097fc5987ec225be4b7d46668a.zh-tw","_resolvedLanguagePackCoreLocation":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\254afc097fc5987ec225be4b7d46668a.zh-tw\\6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"C:\\Users\\yuuta\\AppData\\Roaming\\Code\\clp\\254afc097fc5987ec225be4b7d46668a.zh-tw\\corrupted.info","_languagePackSupport":true}
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
@@ -53,8 +53,8 @@ FPS_BROWSER_USER_PROFILE_STRING = Default
 TMP = /tmp
 # environment
 PROGRAMW6432 = C:\Program Files
-# makefile (from `makefile', line 2)
-OBJS = Source\main.cpp Source\game.cpp Source\card.cpp Source\font_writer.cpp Source\card_collection.cpp
+# makefile (from `makefile', line 3)
+OBJS = Source\main.cpp Source\GameCore\game.cpp Source\GameCore\game_object.cpp Source\GameCore\AssetsManager\font_assets_manager.cpp Source\draw_card_game.cpp Source\game_play_scene.cpp
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
@@ -77,7 +77,7 @@ ALLUSERSPROFILE = C:\ProgramData
 NUMBER_OF_PROCESSORS = 16
 # environment
 ELECTRON_RUN_AS_NODE = 1
-# makefile (from `makefile', line 8)
+# makefile (from `makefile', line 12)
 INCLUDE_PATHS = -IC:\Users\yuuta\Documents\DrawCard\Library\i686-w64-mingw32\include\SDL2
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
@@ -87,10 +87,10 @@ CABAL_DIR = C:\cabal
 OCULUSBASE = C:\Program Files\Oculus\
 # automatic
 %F = $(notdir $%)
-# makefile (from `makefile', line 16)
+# makefile (from `makefile', line 20)
 DEBUG_COMPILER_FLAGS = -w 
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_19112_HWKSHEHSQRCSHJLC
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_27568_TQYFEOHYELGQNDUH
 # environment
 COMPUTERNAME = AWESIAKING
 # environment
@@ -101,7 +101,7 @@ DRIVERDATA = C:\Windows\System32\Drivers\DriverData
 ASL.LOG = Destination=file
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# makefile (from `makefile', line 20)
+# makefile (from `makefile', line 24)
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf
 # environment
 USERNAME = yuuta
@@ -109,7 +109,7 @@ USERNAME = yuuta
 PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# makefile (from `makefile', line 17)
+# makefile (from `makefile', line 21)
 RELEASE_COMPILER_FLAGS = -w -Wl,-subsystem,windows
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\yuuta\AppData\Roaming\Code\CachedData\6d9b74a70ca9c7733b29f0456fd8195364076dda
@@ -131,7 +131,7 @@ MIC_LD_LIBRARY_PATH = C:\Program Files (x86)\Common Files\Intel\Shared Libraries
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `makefile', line 5)
+# makefile (from `makefile', line 9)
 CC = g++
 # default
 MAKE_VERSION := 3.81
@@ -177,7 +177,7 @@ SYSTEMROOT = C:\WINDOWS
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
-# makefile (from `makefile', line 23)
+# makefile (from `makefile', line 27)
 OBJ_NAME = Build\main.exe
 # environment
 APPDATA = C:\Users\yuuta\AppData\Roaming
@@ -191,7 +191,7 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
-# makefile (from `makefile', line 11)
+# makefile (from `makefile', line 15)
 LIBRARY_PATHS = -LC:\Users\yuuta\Documents\DrawCard\Library\i686-w64-mingw32\lib
 # automatic
 ^F = $(notdir $^)
@@ -218,7 +218,7 @@ TERM = cygwin
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 19112
+VSCODE_PID = 27568
 # environment
 USERDOMAIN_ROAMINGPROFILE = AWESIAKING
 # variable set hash-table stats:
@@ -241,13 +241,6 @@ USERDOMAIN_ROAMINGPROFILE = AWESIAKING
 # Files
 
 # Not a target:
-Source\font_writer.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
- 
-# Not a target:
 all:
 #  Command-line target.
 #  Implicit rule search has been done.
@@ -255,12 +248,6 @@ all:
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-Source\card_collection.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -274,29 +261,41 @@ Source\main.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
-debug: Source\main.cpp Source\game.cpp Source\card.cpp Source\font_writer.cpp Source\card_collection.cpp
+debug: Source\main.cpp Source\GameCore\game.cpp Source\GameCore\game_object.cpp Source\GameCore\AssetsManager\font_assets_manager.cpp Source\draw_card_game.cpp Source\game_play_scene.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 27):
+#  commands to execute (from `makefile', line 31):
 	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(DEBUG_COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 	
+
+# Not a target:
+Source\draw_card_game.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
  
-#  Last modified 2022-08-16 22:05:11
+#  Last modified 2022-08-23 23:24:18
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-release: Source\main.cpp Source\game.cpp Source\card.cpp Source\font_writer.cpp Source\card_collection.cpp
+# Not a target:
+Source\GameCore\game.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 30):
+
+release: Source\main.cpp Source\GameCore\game.cpp Source\GameCore\game_object.cpp Source\GameCore\AssetsManager\font_assets_manager.cpp Source\draw_card_game.cpp Source\game_play_scene.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `makefile', line 34):
 	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(RELEASE_COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 	
 
@@ -307,19 +306,25 @@ release: Source\main.cpp Source\game.cpp Source\card.cpp Source\font_writer.cpp 
 #  File has not been updated.
 
 # Not a target:
-Source\card.cpp:
+Source\GameCore\game_object.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
-Source\game.cpp:
+Source\game_play_scene.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Source\GameCore\AssetsManager\font_assets_manager.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
+# Load=12/1024=1%, Rehash=0, Collisions=0/35=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -331,6 +336,6 @@ Source\game.cpp:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Aug 16 22:05:17 2022
+# Finished Make data base on Tue Aug 23 23:24:43 2022
 
  

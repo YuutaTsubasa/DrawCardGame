@@ -1,5 +1,5 @@
 make.exe --dry-run --keep-going --print-directory
 make.exe: Entering directory `/c/Users/yuuta/Documents/DrawCard'
-g++ Source\main.cpp Source\game.cpp Source\card.cpp Source\font_writer.cpp Source\card_collection.cpp -IC:\Users\yuuta\Documents\DrawCard\Library\i686-w64-mingw32\include\SDL2 -LC:\Users\yuuta\Documents\DrawCard\Library\i686-w64-mingw32\lib -w  -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf -o Build\main.exe
+g++ Source\main.cpp Source\GameCore\game.cpp Source\GameCore\game_object.cpp Source\GameCore\AssetsManager\font_assets_manager.cpp Source\draw_card_game.cpp Source\game_play_scene.cpp -IC:\Users\yuuta\Documents\DrawCard\Library\i686-w64-mingw32\include\SDL2 -LC:\Users\yuuta\Documents\DrawCard\Library\i686-w64-mingw32\lib -w  -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image -lSDL2_ttf -o Build\main.exe
 make.exe: Leaving directory `/c/Users/yuuta/Documents/DrawCard'
  
