@@ -3,7 +3,10 @@
 OBJS = Source\main.cpp Source\GameCore\game.cpp \
 	   Source\GameCore\game_object.cpp \
 	   Source\GameCore\AssetsManager\font_assets_manager.cpp \
-	   Source\draw_card_game.cpp Source\game_play_scene.cpp
+	   Source\draw_card_game.cpp Source\game_play_scene.cpp \
+	   Source\GameCore\UIObject\text.cpp \
+	   Source\GameObjects\card.cpp \
+	   Source\GameObjects\card_collection.cpp
 
 #CC specifies which compiler we're using
 CC = g++

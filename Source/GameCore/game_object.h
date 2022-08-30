@@ -19,9 +19,11 @@ namespace GameCore
                 SDL_Rect range, 
                 shared_ptr<SDL_Texture> texture,
                 vector<shared_ptr<GameObject>> children);
-            virtual void handleEvents(SDL_Event& event);
+            virtual void handleEvent(SDL_Event& event);
             virtual void update();
-            virtual void draw(shared_ptr<SDL_Renderer> renderer);
+            virtual void draw(
+                const SDL_Rect& parentRange,
+                shared_ptr<SDL_Renderer> renderer);
     };
 }
 #endif

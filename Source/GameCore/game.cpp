@@ -20,13 +20,14 @@ GameCore::Game::Game(
     IMG_Init(IMG_INIT_PNG);
     TTF_Init();
 
-    _screenWidth = screenWidth;
-    _screenHeight = screenHeight;
-    _window = createWindow(title, screenWidth, screenHeight);
+    _screenRange = SDL_Rect {
+        0, 0, screenWidth, screenHeight
+    };
+    _window = createWindow(title, _screenRange.w, _screenRange.h);
     _renderer = createRenderer(_window);
 
     _rootGameObject = make_shared<GameObject>(
-        SDL_Rect {0, 0, _screenWidth, _screenHeight},
+        _screenRange,
         nullptr,
         vector<shared_ptr<GameObject>>()
     );
@@ -83,19 +84,19 @@ void GameCore::Game::run(){
 				isQuit = true;
 			}
 
-            handleEvent(event);
+            this->handleEvent(event);
 		}
 
-        update();
+        this->update();
 
         clearRenderer(_renderer);
-        draw(_renderer);
+        this->draw(_renderer);
         SDL_RenderPresent(_renderer.get());
 	}
 }
 
 void GameCore::Game::handleEvent(SDL_Event& event){
-    _rootGameObject->handleEvents(event);
+    _rootGameObject->handleEvent(event);
 }
 
 void GameCore::Game::update(){
@@ -103,5 +104,7 @@ void GameCore::Game::update(){
 }
 
 void GameCore::Game::draw(shared_ptr<SDL_Renderer> renderer){
-    _rootGameObject->draw(renderer);
+    _rootGameObject->draw(
+        _screenRange,
+        renderer);
 }

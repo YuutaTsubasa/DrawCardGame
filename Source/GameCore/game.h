@@ -13,8 +13,7 @@ namespace GameCore
         protected:
             shared_ptr<SDL_Window> _window;
             shared_ptr<SDL_Renderer> _renderer;
-            int _screenWidth;
-            int _screenHeight;
+            SDL_Rect _screenRange;
 
             shared_ptr<GameObject> _rootGameObject;
 
